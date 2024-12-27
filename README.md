@@ -27,7 +27,7 @@ __*이텔릭체*와 두껍게__ 를 혼용할 수도 있습니다.
 
 
 [네이버로 이동](https://www.naver.com/)
-![카피바라](file:///C:/Users/Administrator/Desktop/%EC%B9%B4%ED%94%BC%EB%B0%94%EB%9D%BC.mhtml)
+![계단](https://picsum.photos/500/300)
 
 
 # 구분
