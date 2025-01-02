@@ -1,0 +1,18 @@
+25.01.02 Thur
+
+AS (autonomous System) : 자치 시스템 (관리자에 의해 관리되는 라우터의 집합/집단)
+(0-65535)
+ASBR : AS들 사이에서 서로를 연결해주는 
+IGP(Interior Gateway Protocol)
+EGP(Exterior Gateway Protocol)
+
+Distance Vector : Ripv2
+전체네트워크 학습 -> 최적경로 산출
+
+
+ware : 제품
+Hardware : CPU,RAM,DISK - 부품
+Software : hardware 자원을 이용해서 특정 목적달성위해 사용되는 컴퓨터 프로그램
+
+System Software : Operating System - hardware자원을 관리 / 앱 관리 등등 하드웨어 안에 들어있는 여러가지 파일들을 관리를 함
+Application : 사용자 요구사항을 만족하는 프로그램
