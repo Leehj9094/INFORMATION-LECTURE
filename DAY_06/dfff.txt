@@ -1,0 +1,18 @@
+ create table test2db.tbl_score(
+    -> name varchar(45) primary key,
+    -> gender varchar(45),
+    -> subject varchar(45),
+    -> category varchar(45),
+    -> item varchar(45),
+    -> score varchar(45) );
+alter table test2db.tbl_user add column gender char(1) null after age;
+ alter table test2db.tbl_score drop column address;
+alter table test2db.tbl_user drop column address;
+ alter table tbl_user change column gender gen varchar(10) null;
+
+INSERT INTO `test1db`.`tbl_user` (`user_id`, `age`, `address`, `gen`) VALUES ('user1', '11', '대구', '남');
+
+UPDATE `test1db`.`tbl_user` SET `age` = '22', `address` = '울산' WHERE (`user_id` = 'user1');
+DELETE FROM `test1db`.`tbl_user` WHERE (`user_id` = '');
+UPDATE `test1db`.`tbl_user` SET `age` = '333' WHERE (`user_id` = 'user1');
+DELETE FROM `test1db`.`tbl_user` WHERE (`user_id` = 'user1');
