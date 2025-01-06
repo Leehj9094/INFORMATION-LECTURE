@@ -1,0 +1,19 @@
+2025.01.06 mon
+
+database 
+인증 + 허가 = 인가
+administration - users and Privileges - add account - login Name/Limit to Hostes Matching/ password - apply
+- home - MySQL Connections + - connection Name - Local User1 / username / password - ok
+schema (권한 부여) - administration - user and Privileges - user1 - Schena Privileges - add Entry
+특정한 역할을 만들어 관련된 기능들을 묶음으로 나타내는 역할 (ROLL) : 
+administration - Administrative Roles
+
+계정 추가 
+권한 부여 grant to user;
+새로고침 flush privileges;
+확인 show grants for user@'3';
+
+mysql -u user2 -p -h ip address -> use 쓸 주소 -> insert into 주소 values ();
+
+
+DDL ,DLC, DML
