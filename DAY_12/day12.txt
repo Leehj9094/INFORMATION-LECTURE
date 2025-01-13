@@ -1,0 +1,367 @@
+2025.01.13 mon
+
+VI란?
+- 문서 편집기(메모장) 
+vi 이동 모드
+- 커서이동 : hjkl
+- 단어이동 : web
+- 행이동 : 0,$
+- 페이지이동 : ctrl + fb
+- 마지막처음 : gg,G
+- 삭제 : dd
+- 복사/붙여넣기 : yy,P
+
+vi 실행모드 
+- wq, :q!
+- set number
+- se nonumber
+
+vi 편집모드
+- a(뒤에 행에서 시작), i(선택한 자리에서 시작), o(새로운 행), s(삭제후 실행) => insert 편집 모드에서 나가고 싶으면 esc
+
+권한이란 ?
+- 권력 한계? 권력 : 힘 (범위) 한계 (
+(소유) 
+(소유물에 대한 권한 - 파일/디렉토리)
+권한 
+1) 소유권 : 허가권을 부여할 수 있는 권한
+- 예) 사용자 계정, 그룹 계정, 서비스 계정 부여
+2) 허가권 : 자원에 대한 (파일, 디렉토리) 접근 제한
+
+
+d (rwx r-x r-x.)  2 (root root)      220 10월  2  2020 yum.repos.d
+ (허가권)		(소유권)-> 소유한 사용자 계정(말 그대로 사용자꺼) / 소유한 그룹 계정(그룹 전체에 대한)	
+
+소유권	-   허가권
+소유자 계정 - rwx	(r = read(읽기) / w = wirte(쓰기) / x = execute(실행))
+그룹 계정 - r-x 
+전체 가능 - r-x.
+
+
+파일 						디렉토리(폴더)
+- r (내용보기) : cat,head,tail,more etc...			- r (폴더안목록보기) : ls
+- w (내용수정) : vi, > 				- w (폴더내생성,수정,삭제) : touch,cp,mv,rm...
+- x (실행파일) : ./cmd				- x (폴더내로 진입권한) : cd
+
+rwxr_xr_x : Symbolic 방식		r	w	x
+755 : Numeric 방식			4	2	1
+
+rwxr--wx : 743
+--xrw--w- : 162
+r--rw---x : 461
+
+123 : --x-w--wx
+456 : r--r-xrw-
+771 : rwxrwx--x
+
+
+미니문제
+-----------
+rw_r_xr__	-> 654
+rwxr__r_x	-> 745
+r__rwxr__	-> 474
+r_xr__r_x	-> 545
+r__r_x___	-> 450
+
+755	-> rwxr-xr-x
+644	-> rw-r--r--
+701	-> rwx-----x
+542	-> r-xr---w-
+643	-> rw-r---wx
+375	-> -wxrwxr-x
+
+---------------------------------------------실행권한-------------------------------------------
+
+chown user1:user1 ./ a
+chown :user2 ./a 
+chmod 035 /perm
+
+
+user10,user20,user30 생성상태에서 진행
+
+1. /perm 디렉토리 생성
+
+2. /perm 소유자계정 user30, 소유그룹 계정 user20 으로 소유권변경
+
+3. /perm 디렉토리에 user10 은 접근가능,목록보기가능,파일생성불가 허가권부여
+
+4. /perm 디렉토리에 user20 은 접근가능,목록보기불가,파일생성가능 허가권부여
+
+5. /perm 디렉토리에 user30 은 접근불가,목록보기불가,파일생성불가 허가권부여
+
+6. /perm 디렉토리에 user30 이 test파일을 만들고 그안에 'testfile' 내용을 저장
+
+7. user30계정으로 /perm/test의 파일의 허가 범위를 다음과 같이 지정
+
+user30:읽기,쓰기 가능, user20:읽기불가 쓰기가능, 나머지계정 :읽기가능 쓰기불가
+ 
+
+
+---------------------------------------------계정-----------------------------------------------
+
+계정 : 인증과 				권한부여(소유권,허가권 부여)의 도구
+        (Authentication)  			(Permission)
+
+시스템 내에서 등룍된 사용자 임을 확인 
+
+ID/PW, 지문인증, 홍채인증
+ID를 확인(식별)
+PW의 일치여부 확인(인증)
+(ex : ID,PASSWD) 
+
+
+umask : 777 -077 =700
+user1 :drwx------ user1:user1 /home/user1
+
+기밀성 : 목적지로 도착 시 암호화된 문서를 열기 위해 
+암호화가 필요하기 위해선 복호화가 필요(자물쇠를 걸기위해) 인증서 기반의 인증(key)
+인증을 확인하기 위한 중간에 
+무결성 : 무결성 알고리즘을 위한 
+메세지를 확인하기 위한 인증정도
+인증 확인하기 위한 인증정도
+- SHA512
+무결성 알고리즘 특징
+단방향성 (복호화 할수 없음)
+원문값 = 해시값
+원문 데이터는 shadow에 저장되지 않음
+
+가용성
+
+vi /etc/default/user
+/etc/default/useradd : 계정 기본 경로 설정 (모든계정적용)
+users는 기본 권한을 부여하기 위한 기본 그룹계정
+CREATE_MAIL_SPOOL=yes	메일함 생성여부 -개인적으로 
+
+
+cat (tail -5) /etc/passwd
+계정명/pw/UID/GID/comment/홈디렉토링 경로/ 사용하는 쉘 경로
+user2:x:1001:1001::/home/user2:/bin/bash
+user3:x:1002:1002::/home/user3:/bin/bash
+user10:x:1003:1003::/home/user10:/bin/bash
+user20:x:1004:1004::/home/user20:/bin/bash
+user30:x:1005:1005::/home/user30:/bin/bash
+
+
+[root@localhost ~]# tail -5 /etc/shadow
+1)계정명
+2)암호화된 패스워드 저장공간
+3)패스워드 생성날짜(1970.01.01이후)
+4)패스워드 최소사용날짜
+5)패스워드 최대사용날짜
+6)패스워드 만료 경고일 
+7)만료시 비활성화 옵션(-1:미설정, 0:바로만료,1:하루연장)
+8)만료지정일 
+user2:$6$IhXlg.Rl$.e6zloYsoAM6CSQRbWK2M8tfNqWRr8rG9plTku3SrgAtvQdcGJty3rjEYLNQjv0yjWMNxpzD3EwjURk5auqzT/:20101:0:99999:7:::
+user3:$6$SZWwgBv.$UAfuaQ/e/aysftl7AWWZN88cjc.RcvcxphpM4pnzYQ/KGLagsLeqsaQvxNmRcXsS38bS65r6jBIR.JMbRpTmv/:20101:0:99999:7:::
+user10:$6$JWf2fcHp$C6TZIzbocWwFJv9HFt0EV.XNGetNrs/FaR/jTNt2MS1vfSq2P/stxc4EjJqgwJdBMy/n9kpZkYh8Gge4.gIHV0:20101:0:99999:7:::
+user20:$6$cAqzmOWR$YJUVxA5hUDdxBlGYR.dxkC3fNOuEGbuVCjDy6mRPox6rKwxyISV/dhbB134Gl9pjC3KNP3owwxILeLJs0BVes/:20101:0:99999:7:::
+user30:$6$ltSrpEeU$NwjxSdRJdZazxVcWVpZSat9mcEkLx2nGIfWAsv1bahMan.VY.s9uPd9CAgxKQHkAWPU5yVOZvbvVPYSX14nrj.:20101:0:99999:7:::
+
+[root@localhost ~]# tail -5 /etc/group
+그룹계정
+user2:x:1001:
+user3:x:1002:
+user10:x:1003:
+user20:x:1004:
+user30:x:1005:
+
+ ls -l /home
+관리자를 뺀 지금 사용되고 있는 계정 목록
+drwxr-xr-x.  3 root   root     15  1월  9 14:33 a
+drwxr-xr-x.  2 root   root      6  1월  9 14:32 test1
+drwxr-xr-x.  2 root   root      6  1월  9 14:32 test3
+drwx------. 15 user1  user1  4096  1월 13 11:47 user1
+drwx------.  5 user10 user10  128  1월 13 14:06 user10
+drwx------.  5 user2  user2   144  1월 13 12:10 user2
+drwx------.  5 user20 user20  156  1월 13 14:06 user20
+drwx------.  5 user3  user3   128  1월 13 12:10 user3
+drwx------.  5 user30 user30  128  1월 13 14:06 user30
+
+- 계정권한 설정을 잘못하면 밖에서 들어오기 힘듦!
+
+[root@localhost ~]# ls -l /var/spool/mail/
+메일을 사용하고 있는 계정 목록
+-rw-------. 1 root   mail 113486  1월  8 17:50 root
+-rw-rw----. 1 rpc    mail      0  1월  9 00:33 rpc
+-rw-rw----. 1 user1  mail      0  1월  9 00:38 user1
+-rw-rw----. 1 user10 mail      0  1월 13 12:09 user10
+-rw-rw----. 1 user2  mail      0  1월 13 11:09 user2
+-rw-rw----. 1 user20 mail      0  1월 13 12:09 user20
+-rw-rw----. 1 user3  mail      0  1월 13 11:09 user3
+-rw-rw----. 1 user30 mail      0  1월 13 12:09 user30
+
+user100:
+$6 = 해시알고리즘 종류
+$1H7u8jEv = salt값
+$JtFKU/ymEcKECCU/SJljWFt4bN8/C6GZsVZEZn43HaQSClAKpirPekxOcIqWOEqCMLzSJT73.ce2eB48FmPUx/:20101:0:99999:7:::
+= Salt값 + 영문Password -> 해시알고리즘 -> 해시값
+Salt 값은 동일한 비번을 사용하더라도 서로 다르게 구분해놓은 
+
+
+[root@localhost ~]# useradd -u2000 user200	(-u 2000 이면 그 뒤론 2001번 부터 시작)
+[root@localhost ~]# tail -3 /etc/passwd
+user30:x:1005:1005::/home/user30:/bin/bash
+user100:x:1006:1006::/home/user100:/bin/bash
+user200:x:2000:2000::/home/user200:/bin/bash
+[root@localhost ~]# useradd user300
+[root@localhost ~]# tail -3 /etc/passwd
+user100:x:1006:1006::/home/user100:/bin/bash
+user200:x:2000:2000::/home/user200:/bin/bash
+user300:x:2001:2001::/home/user300:/bin/bash
+
+GID
+[root@localhost ~]# useradd -g1004 user400	(-g1004 뒤로 
+[root@localhost ~]# tail -5 /etc/passwd
+user30:x:1005:1005::/home/user30:/bin/bash
+user100:x:1006:1006::/home/user100:/bin/bash
+user200:x:2000:2000::/home/user200:/bin/bash
+user300:x:2001:2001::/home/user300:/bin/bash
+user400:x:2002:1004::/home/user400:/bin/bash
+[root@localhost ~]# id user400
+uid=2002(user400) gid=1004(user20) groups=1004(user20)
+
+[root@localhost ~]# useradd -G1004 user500
+[root@localhost ~]# id user500
+uid=2003(user500) gid=2003(user500) groups=2003(user500),1004(user20)
+
+[root@localhost ~]# useradd -c AnonAcount user600 (계정 설명이 포함됨)
+[root@localhost ~]# tail -5 /etc/passwd
+user200:x:2000:2000::/home/user200:/bin/bash
+user300:x:2001:2001::/home/user300:/bin/bash
+user400:x:2002:1004::/home/user400:/bin/bash
+user500:x:2003:2003::/home/user500:/bin/bash
+user600:x:2004:2004:AnonAcount:/home/user600:/bin/bash
+
+홈디렉토리 만들거임 - 다른경로로 할거임
+[root@localhost ~]# mkdir -p /export/home
+[root@localhost ~]# useradd -d /export/home/user700 user700
+[root@localhost ~]# tail -5 /etc/passwd
+user300:x:2001:2001::/home/user300:/bin/bash
+user400:x:2002:1004::/home/user400:/bin/bash
+user500:x:2003:2003::/home/user500:/bin/bash
+user600:x:2004:2004:AnonAcount:/home/user600:/bin/bash
+user700:x:2005:2005::/export/home/user700:/bin/bash
+[root@localhost ~]# ls -l /export/home
+합계 0
+drwx------. 3 user700 user700 78  1월 13 16:16 user700
+
+
+스컬 경로 변경
+[root@localhost ~]# ls -al /home/user100 /home/user200 /home/user300
+/home/user100:
+합계 12
+drwx------.  5 user100 user100 107  1월 13 15:49 .
+drwxr-xr-x. 17 root    root    212  1월 13 16:14 ..
+-rw-r--r--.  1 user100 user100  18 11월 25  2021 .bash_logout
+-rw-r--r--.  1 user100 user100 193 11월 25  2021 .bash_profile
+-rw-r--r--.  1 user100 user100 231 11월 25  2021 .bashrc
+drwxrwxr-x.  3 user100 user100  18  1월 13 15:49 .cache
+drwxrwxr-x.  3 user100 user100  18  1월 13 15:49 .config
+drwxr-xr-x.  4 user100 user100  39  1월  9 00:32 .mozillaㅕ
+
+/home/user200:
+합계 12
+drwx------.  3 user200 user200  78  1월 13 16:09 .
+drwxr-xr-x. 17 root    root    212  1월 13 16:14 ..
+-rw-r--r--.  1 user200 user200  18 11월 25  2021 .bash_logout
+-rw-r--r--.  1 user200 user200 193 11월 25  2021 .bash_profile
+-rw-r--r--.  1 user200 user200 231 11월 25  2021 .bashrc
+drwxr-xr-x.  4 user200 user200  39  1월  9 00:32 .mozilla
+
+/home/user300:
+합계 12
+drwx------.  3 user300 user300  78  1월 13 16:10 .
+drwxr-xr-x. 17 root    root    212  1월 13 16:14 ..
+-rw-r--r--.  1 user300 user300  18 11월 25  2021 .bash_logout
+-rw-r--r--.  1 user300 user300 193 11월 25  2021 .bash_profile
+-rw-r--r--.  1 user300 user300 231 11월 25  2021 .bashrc
+drwxr-xr-x.  4 user300 user300  39  1월  9 00:32 .mozilla
+
+skel
+[root@localhost ~]# mkdir /custom
+[root@localhost ~]# cp -r /etc/skel /custom/skel
+[root@localhost ~]# cd /custom/skel
+[root@localhost skel]# ls -l
+합계 0
+[root@localhost skel]# touch a b c
+[root@localhost skel]# touch 1 2 3
+[root@localhost skel]# ls -l
+합계 0
+-rw-r--r--. 1 root root 0  1월 13 16:21 1
+-rw-r--r--. 1 root root 0  1월 13 16:21 2
+-rw-r--r--. 1 root root 0  1월 13 16:21 3
+-rw-r--r--. 1 root root 0  1월 13 16:21 a
+-rw-r--r--. 1 root root 0  1월 13 16:21 b
+-rw-r--r--. 1 root root 0  1월 13 16:21 c
+
+[root@localhost skel]# useradd -m -k /custom/skel user900
+[root@localhost skel]# ls -l /home
+합계 4
+drwxr-xr-x.  3 root    root      15  1월  9 14:33 a
+drwxr-xr-x.  2 root    root       6  1월  9 14:32 test1
+drwxr-xr-x.  2 root    root       6  1월  9 14:32 test3
+drwx------. 15 user1   user1   4096  1월 13 11:47 user1
+drwx------.  5 user10  user10   128  1월 13 14:06 user10
+drwx------.  5 user100 user100  107  1월 13 15:49 user100
+drwx------.  5 user2   user2    144  1월 13 12:10 user2
+drwx------.  5 user20  user20   156  1월 13 14:06 user20
+drwx------.  3 user200 user200   78  1월 13 16:09 user200
+drwx------.  5 user3   user3    128  1월 13 12:10 user3
+drwx------.  5 user30  user30   128  1월 13 14:06 user30
+drwx------.  3 user300 user300   78  1월 13 16:10 user300
+drwx------.  3 user400 user20    78  1월 13 16:11 user400
+drwx------.  3 user500 user500   78  1월 13 16:12 user500
+drwx------.  3 user600 user600   78  1월 13 16:14 user600
+drwx------.  3 user900 user900  132  1월 13 16:24 user900
+
+[root@localhost skel]# useradd -s /bin/sh user1010
+[root@localhost skel]# tail -3 /etc/passwd
+user700:x:2005:2005::/export/home/user700:/bin/bash
+user900:x:2006:2006::/home/user900:/bin/bash
+user1010:x:2007:2007::/home/user1010:/bin/sh
+
+history 기록
+login as: user1010
+user1010@192.168.10.10's password:
+-sh-4.2$ ls-l
+sh: ls-l: 명령을 찾을 수 없습니다...
+-sh-4.2$
+-sh-4.2$
+-sh-4.2$   1	=기본적인 명령어가 없음 
+[root@localhost skel]# useradd -u 3000 -g 1004 -G 0 -c TEST -d /export/home/user2020 -mk /custom/skel user2020
+[root@localhost skel]# tail -2 /etc/passwd
+user1010:x:2007:2007::/home/user1010:/bin/sh
+user2020:x:3000:1004:TEST:/export/home/user2020:/bin/bash
+[root@localhost skel]# id user2020
+uid=3000(user2020) gid=1004(user20) groups=1004(user20),0(root)
+[root@localhost skel]# ls -al /export/home/user2020
+합계 12
+drwx------. 3 user2020 user20 132  1월 13 16:30 .
+drwxr-xr-x. 4 root     root    37  1월 13 16:30 ..
+-rw-r--r--. 1 user2020 user20  18  1월 13 16:20 .bash_logout
+-rw-r--r--. 1 user2020 user20 193  1월 13 16:20 .bash_profile
+-rw-r--r--. 1 user2020 user20 231  1월 13 16:20 .bashrc
+drwxr-xr-x. 4 user2020 user20  39  1월 13 16:20 .mozilla
+-rw-r--r--. 1 user2020 user20   0  1월 13 16:21 1
+-rw-r--r--. 1 user2020 user20   0  1월 13 16:21 2
+-rw-r--r--. 1 user2020 user20   0  1월 13 16:21 3
+-rw-r--r--. 1 user2020 user20   0  1월 13 16:21 a
+-rw-r--r--. 1 user2020 user20   0  1월 13 16:21 b
+-rw-r--r--. 1 user2020 user20   0  1월 13 16:21 c
+
+
+[미니 문제]
+----------------------------------------------------
+1. test10 계정 생성시 UID 값 1800 으로 지정
+
+2. test20 계정 생성시 주그룹을 test10 으로 지정
+3. test30 계정 생성시 보조그룹 test10 추가
+4. test40 계정 생성시 홈디렉토리 경로를 /export/test40 으로 지정
+5. test50 계정 생성시 스컬경로를 /skel2 로하고 test50홈디렉토리에 test50파일
+이 생성되도록 하세요
+6. test60 계정 생성시 쉘을 /bin/ksh 로 설정 
+
+
+
+
+  
