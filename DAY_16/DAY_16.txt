@@ -1,0 +1,23 @@
+2025.01.17 fri
+
+1. JDK 설치
+2. 톰캣 설치
+아파치 시작 누르기
+3. 이클립스 설치
+이클립스 실행 후 아파치 실행
+\
+
+
+commit 
+V0.0 - master
+cmd (검색) - git log --oneline
+
+파일 뉴 아더 아파치 9 
+
+
+LOCALHOST(이클립스)		REMOTE
+GIT REPO			->	GITHUB REPO
+			PUSH
+LOCALHOST(이클립스)		REMOTE
+GIT REPO			<-	GITHUB REPO
+		1	CLONE
