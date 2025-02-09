@@ -1,5 +1,0 @@
-rem + 미디어쿼리
-vw + rem + clamp + min/max width/height
-sans-serif : 맑은 고딕
-
-굳이 밖에 있는 height를 미리 잡지 말고 마무리쯤 알아서 
