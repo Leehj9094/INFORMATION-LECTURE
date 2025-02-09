@@ -1,0 +1,39 @@
+CSS 
+
+5 - LAYOUT
+- display: flex;
+- 수평배치 center, right, left, space-between<자주 쓰임>, space-evenly, space-around
+ justify-content: space-between;
+- item간 여백지없는 설정 시 gap option 사용가능
+ gap: 10px;
+- 수직배치 start, end, center, flex-start, flex-end
+ align-items: center;
+- 방향지정 : row, column row-reverse, column-reverse
+ flex-direction: row-reverse;
+.warpper>.parent>.child:nth-child(1){
+- flex 아이템의 증가 비율 설정 0(기본값:증가하지 않음)
+flex-grow: 2;
+- flex 아이템의 감소 비율 설정 (0 - 감소하지 않음 1:기본값 너비에따라 감소)
+flex-shrink: 0;
+- 기본크기 설정
+flex-basis: 200px; }
+
+- display:grid;
+1단계: 기본 그리드
+=> .grid-basic
+2단계: 영역 지정
+=> .grid-areas
+3단계: 반응형 그리드
+=> .grid-responsive
+ 4단계: 그리드 정렬
+=> .grid-alignment
+미디어 쿼리
+=> @media (max-width: 768px) {                /* 화면 너비가 768px 이하일 때 적용 */
+            .grid-areas {
+                grid-template-areas:                /* 태블릿/모바일용 그리드 영역 재정의 */
+                    'header header'                 /* 첫 줄: header가 2칸 차지 */
+                    'sidebar main'                  /* 둘째 줄: sidebar와 main이 각각 1칸씩 */
+                    'footer footer';                /* 셋째 줄: footer가 2칸 차지 */
+                grid-template-columns: 1fr 2fr;     /* 첫 열은 1fr, 둘째 열은 2fr 비율로 설정 */
+            }
+        }

@@ -1,0 +1,81 @@
+CSS
+
+6 - ANIMATION
+<1. Transition>
+- 특정 조건 하에서 애니메이션이 동작되는 과정을 보여주고자 할 때 사용 
+- 전환이 일어날 요소들을 작성해주는 것 
+<transition-duration : 2s;> => 효과가 나타나는데 걸리는 시간
+.container:hover .item{ transform: perspective(30px)rotatey(180deg);}
+<2. SiteMenu>
+- 
+<3. TransForm3D>
+- 평면에서의 여려 개 css 속성을 조합하고 3D 공간에서의 회전, 확대, 이동, 비틀기를 포함하고 원근감, 관찰자의 위치를 부여해 3D 공간을 만들어 낼 수 있음
+translate3d(x,y,z) : 요소의 위치를 X축으로 x만큼, Y축으로 y만큼 Z축으로 z만큼 이동	(px, %, em 등)
+translateX(n) : 요소의 위치를 X축으로 x만큼 이동	(px, %, em 등)
+translateY(n) : 요소의 위치를 Y축으로 y만큼 이동	(px, %, em 등)
+translateZ(n) : 요소의 위치를 Z축으로 z만큼 이동	(px, %, em 등)
+scale3d(x,y)	: 요소의 크기를 X축으로 x배, Y축으로 y배, Z축으로 z배 확대 또는 축소	(0과 양수)
+scaleX(n) : 요소의 크기를 X축으로 x배 확대 또는 축소	(0과 양수)
+scaleY(n) : 요소의 크기를 Y축으로 y배 확대 또는 축소	(0과 양수)
+scaleZ(n) : 요소의 크기를 Z축으로 z배 확대 또는 축소	(0과 양수)
+rotate3d(x,y,z) : 요소를 X축으로 x각도, Y축으로 y각도, Z축으로 z각도 회전	(+/- 각도(deg))
+rotateX(x) : 요소를 X축으로 x각도 회전	(+/- 각도(deg))
+rotateY(y) : 요소를 Y축으로 y각도 회전	(+/- 각도(deg))
+rotateZ(z) : 요소를 Z축으로 z각도 회전	(+/- 각도(deg))
+- 회전시 뒷면은 표시 안함 
+=> backface-visibility: hidden;
+자식요소들에게 3d효과를 전파
+=> transform-style: preserve-3d;
+원근법 설정
+=> perspective: 1000px;
+
+<4. Animation>
+천천히 - 빠름 - 천천히
+=> animation-timing-function: ease;
+ 천천히 - 빠름 */
+=> animation-timing-function: ease-in ;
+빠름 - 천천히 */
+=> animation-timing-function: ease-out;
+천천 - 보통 - 천천 */
+=> animation-timing-function: ease-in-out;
+일정속도 */
+=> animation-timing-function: linear;
+
+@keyframes moving1{
+            from {margin-left:100%};
+            to {margin-left:0};
+        }
+        @keyframes moving2{
+            from {top: 100vw};
+            to {top: 0};
+        }
+
+div:nth-child(3){
+            position: relative;
+            animation-name: moving3;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+=> @keyframes moving3{
+            from{margin-left: 100vw; margin-top: 100vh;}
+            to{margin-left: 0; margin-top: 0;}
+        }
+
+div:nth-child(2){
+            animation-name: moving2;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+=> @keyframes moving2{
+            from{margin-left: 80%;}
+            to{margin-left: 0;}
+            0%{background-color: red; transform: rotate(45deg);}
+            25%{background-color: orange; transform: rotate(90deg);}
+            50%{background-color: yellow; transform: rotate(180deg) scale(2);}
+            75%{background-color: green; transform: perspective(20px) rotateY(180deg) skew(20deg);}
+            100%{background-color: blue;}
+        }
+<5. slider>
+

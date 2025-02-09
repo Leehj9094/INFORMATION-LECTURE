@@ -1,0 +1,219 @@
+2025.01.24 & 27 
+
+
+1. HTML
+- 웹 페이지 콘텐츠 안의 꺾쇠 괄호에 둘러싸인 "태그"로 되어있는 HTML 요소 형태로 작성
+
+<1. Basic1,2>
+- <!DOCTYPE html>	     : 이 문서가 HTML5 문서임을 나타냄
+- <html lang="ko"> 	     : HTML문서의 시작을 나타내며 lang 속성을 이용하여 문서의 기본언어가한국어임을 명시
+- <head> 		 	     : 문서의 메타데이터와 제목 등을 포함하는 머리말
+- <meta charset="UTF-8"> : 문서의 문자 인코딩을 UTF-8 으로 설정
+- <meta name="Viewport" content="width=device-width, initial-scale=1.0"> : 반응형 웹 디자인을 위한 뷰포트 설정
+- width=device-width	    : 뷰포트의 너비를 디바이스의 너비만큼 설정
+- initial-scale=1.0		    : 페이지가 처음 로드될 때 기본 확대/ 축소 수준을 지정
+- <title>Document</title>
+- <body>			    : 문서의 본문, 브라우저에 viewPort(웹페이지를 사용자가 보는 영역)에 표시되는 내용
+
+- 제목 : <h></h>
+- 수평줄 : <hr />
+- 줄바꿈 : <br />
+- 단락태그(p) : 하이퍼 텍스트 마크업 언어(영어 : Hyper Text Markup Language, HTML, 문화어-초본문표식달기언어, 하이퍼본문표식달기언어) 는 웹 페이지 표시를 위함
+- 블럭형태그(div) : 개빌된 지배적인 마크업 언어.
+		    	또한, HTML은 제목, 단락, 목록 등과 같은 본문을 위한 구조적 의미를 나태내는 것뿐 아니라 링크, 인용과 그 밖의 항목으로 구조적 문서를 만들수 있음
+		    	이미지와 객체를 내장하여 대화형 양식을 생성하는 데 사용됨
+- 라인형태그(span) : 웹 브라우저와 같은 HTML처리 장치의 행동에 영향을 주는 자바스크립트 본문과 그 밖의 항목 외관과 베치를 정의하는 css같은 스크립트를 포함하거나 
+			   불러올 수 있음. 
+- HTML과 CSS 표준의 공동 책임자인 W3C는 명확하고 표상적인 마크업을 위하여 CSS사용을 권장
+
+<3. UI_List>
+- UL태그 : 리스트형 구조 생성 태그
+ex) <ul>
+       <li></li>
+    </ul>
+기본형 : 순서번호가 없는 리스트(EMMET 단축 : ul>li*4{LIST$})
+=> <ul>
+	<li>LIST1</li>
+	<li>LIST2</li>
+ 	<li>LIST3</li>
+	<li>LIST4</li>
+     </ul>
+
+- OL태그 : 순서번호가 있는 리스트 type=a,i,1
+<ol type="A">
+	<li>LIST1</li>
+	<li>LIST2</li>
+ 	<li>LIST3</li>
+	<li>LIST4</li>
+</ol>
+
+<5. EMMET>
+
+- 자식요소 선택 : '>'
+ex) div>ul>li
+<div>
+	<ul>
+		<li></li>
+	</ul>
+</div>
+
+- 형제노드 : '+'
+ex) idv>ul+ol
+<div>
+        <ul></ul>
+        <ol></ol>
+</div>
+
+- 상위태그로 이동 : '^'
+ex) div>ul>li^p
+<div>
+       <ul>
+               <li></li>
+       </ul>
+       <p></p>
+</div>
+
+- 클래스 선택자 : " . "
+ex) .c1
+<div class="c1"></div>
+
+- ID 선택자 : " # "
+ex) #rapper
+ <div id="rapper"></div>
+
+- atter 추가
+ex) div>ol>li*4{MENU $}
+<div>
+       <ol>
+            <li>MENU 1</li>
+            <li>MENU 2</li>
+            <li>MENU 3</li>
+            <li>MENU 4</li>
+       </ol>
+</div>
+
+- 시작번호 선택
+ex) div>ul>li*8{TEXT $$$}
+<div>
+    <ul>
+        <li>TEXT 001</li>
+        <li>TEXT 002</li>
+        <li>TEXT 003</li>
+        <li>TEXT 004</li>
+        <li>TEXT 005</li>
+        <li>TEXT 006</li>
+        <li>TEXT 007</li>
+        <li>TEXT 008</li>
+    </ul>
+</div>
+
+- 문서 전체 구조 Emmet 만들기
+ex) .rapper>header>.top-header+nav^main>section*3^footer
+<div class="rapper">
+    <header>
+        <div class="top-header"></div>
+        <nav></nav>
+    </header>
+    <main>
+        <section></section>
+        <section></section>
+        <section></section>
+    </main>
+    <footer></footer>
+</div>
+ex) ul.main-menu>li*4>a{$_mainmenu}+ul>li*5>a{$_submemu}
+<ul class="main-menu">
+    <li>
+        <a href="">1_mainmenu</a>
+        <ul>
+            <li><a href="">1_submemu</a></li>
+            <li><a href="">2_submemu</a></li>
+            <li><a href="">3_submemu</a></li>
+            <li><a href="">4_submemu</a></li>
+            <li><a href="">5_submemu</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="">2_mainmenu</a>
+        <ul>
+            <li><a href="">1_submemu</a></li>
+            <li><a href="">2_submemu</a></li>
+            <li><a href="">3_submemu</a></li>
+            <li><a href="">4_submemu</a></li>
+            <li><a href="">5_submemu</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="">3_mainmenu</a>
+        <ul>
+            <li><a href="">1_submemu</a></li>
+            <li><a href="">2_submemu</a></li>
+            <li><a href="">3_submemu</a></li>
+            <li><a href="">4_submemu</a></li>
+            <li><a href="">5_submemu</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="">4_mainmenu</a>
+        <ul>
+            <li><a href="">1_submemu</a></li>
+            <li><a href="">2_submemu</a></li>
+            <li><a href="">3_submemu</a></li>
+            <li><a href="">4_submemu</a></li>
+            <li><a href="">5_submemu</a></li>
+        </ul>
+    </li>
+</ul>
+
+<6. Table>
+- 행과 열로 구성된 구조화된 데이터 집합(=표 형식의 데이터)
+- td : table data 의미
+- tr : 테이블의 행
+- th : 테이블 헤더
+ex) 
+<table>											
+	<tr>
+		<th>Data 1</th>
+		<th>Data 2</th>
+	</tr>
+	<tr>
+		<td>Calcutta</td>
+		<td>Orange</td>
+	</tr>
+	<tr>
+		<td>Robots</td>
+		<td>Jazz</td>
+	</tr>    	
+- rowspan : 가로방향으로 정보를 읽고 싶을때 사용 / 세로 방향 ()으로 셀을 합치고 싶을떄 사용
+ex) 아래로 3칸을 합치고 싶으면 rowspan="3" 이런 식으로 넣어주면 됨
+- colspan : 정보를 세로로 읽고 싶을 떄 사용 / 가로 방향으로 샐이 합쳐짐
+ex) 옆으로 2칸을 합치고 싶으면 colspan="2" 이런 식으로 넣어주면 됨
+
+<8. A>
+- a태그 : 하나의 페이지에서 다른 페이지를 연결할 떄 사용하는 하이퍼링크(HyperLink)를 정의할 떄 사용
+- a에서 href속성이 링크의 목적지를 가르킴 (없으면 무용지물)
+
+<10. Image>
+- <img src="./images/dino.jpg> -> image파일에 있는 이미지
+- <img src="https://search.pastiatic.com/commondalkfh aslkjfhslak.JPEG> -> 주소지에서 가져오는 이미지
+- alt : 이미지를 보여줄 수 없을 때 해당태그를 보여줌
+
+<12. video>
+- 이미지와 비슷하게 들어감
+- source src="" 를 이용하여 영상을 넣을 수 있음
+- 다운로드 되어있는 영상은 <a href="./video/ccc-Videos/cat.mp4"> 
+- youtube 등 영상도 가능함
+
+<14. FORM>
+- Form : 사용자로부터 특정정보를 받아 서버로 전달하는데 사용되는 태그
+- Action Attribute : 전달받은 서버 URL
+- Method Attribute : 서버로 요청하는 방식
+- GET : 사용자 요청 정보를 Query String으로 전달(Default)
+- POST : 사용자 요청 정보를 Request body(Payload)로 전달
+
+(19. DATA)
+- 사용자 지정 데이터 특성(Custom data attribute)이라는 특성 클래스를 형성할 수 있음
+- 데이터 속성은 특정한 데이터를 DOM요소에 저장해두기 위함이 목적임
+ex) 
+data-value / data-code / data-column / data-index-number 등등
+

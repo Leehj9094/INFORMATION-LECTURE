@@ -1,0 +1,64 @@
+CSS
+
+3 - SELECTOR
+<1. Selector>
+- 스타일을 어떤 엘리먼트에 적용할지를 선택하게 해주는 <h1 / div>
+- 전체선택자 : HTML 문서  내의 모든 요소를 선택 (주로 box-sizing처럼 문서 전체에 한번에 적용해야하는 스타일이 있을 때 사용) <*>
+- 요소선택자 : 지정된 태그명을 가지는 요소를 선택 <section, div>
+- id선택자 : id값을 선택 / id는 html에서  중복되어 사용할 수 없음
+- class선택자  : class값을 선택 / class는 html문서에서 중복되어 사용할 수 있음
+- 그룹선택자 : 말 그대로 선택자 여러 개를 하나의 묶음으로 만들어 선택 < , >
+복합 CSS Selector
+- 자식선택자 : > => .parent>div
+- 자손선택자 : (공백) => .parent p
+<4. 동위>
+- 형제(동위) 선택자 : 
+일반 동위 선택자는 해당 요소와 동위 관계에 있으며, 해당 요소보다 뒤에 존재하는 특정 타입의 요소를 모두 선택함
+ex) 
+.c2~p{border: 5px solid greenyellow;} => 일반형제 선택자 (c2의 다음 형제 요소 p 모두 선택)
+.c2+p{background-color: royalblue;} => 인접형제 선택자 (c2의 다음 형제 요소 p 하나만 선택)
+<9. child>
+ex) 
+ :first-child : 첫번째 자식요소
+:last-child : 마지막 자식요소
+:nth-child : n 번째 자식요소 
+ul>li:first-child{ background-color: orange; }
+ul>li:last-child{ background-color: blueviolet; } 
+ul>li:nth-child(1){ border-radius: 15; }
+ul>li:nth-child(3){background-color: yellow;}
+
+<3. Layout>
+- 헤더 영역 : 
+.wrapper{
+            background-color: azure;
+            width: 300px; height: 200px;
+            border: 5px double dodgerblue;
+        }
+        .wrapper>header{
+            border: 3px;
+        }
+        .wrapper>header>.top-header{
+            background-color: black;
+        }
+        .wrapper>header>nav{
+            color: black;
+        }
+- 메인 영역 : 
+.wrapper>main{
+            background-color: blueviolet;
+        }
+- CSS 페이지 레이아웃 기술은 웹페이지에 포함될 요소들을 가져와 일반적인 레이아웃 흐름에서의 기본 위치, 주변읜 다른 요소, 부모 컨테이너, 
+   기본 뷰포트 및 윈도우 등의 요소와 관련하여 해당 요소가 어디에 위치할지 제어할 수 있음
+- display : display 속성에 포함된 모든 속성의 값을 지정하는 것
+- flexbox : 행이나 열을 한 차원으로 쉽게 레이아웃할 수 있도록 -> 사용하려면 부모요소에 display:flex를 적용하면 모든 직계 자식이 플랙스 항목이 됨
+
+<5. Custom Checkbox>
+<div class="chk-block">
+        <input type="checkbox" id="chk">
+        <label class="check-label" for="chk"></label>
+<span>체크박스</span>
+- 의사선택자 : 
+- 가상선택자 : 
+
+
+ 
