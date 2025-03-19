@@ -1,0 +1,23 @@
+03.19
+
+reflection ?
+- 객체를 통해 클래스의 정보를 분석해 내는 프로그램
+- 투영, 반사 라는 사전적인 의미를 지님
+- 리플렉션은 형은 알고 있지만 형변환을 할 수 없는 상태에서 객체의 메서드를 호출 할 수 있음
+사용 - > class , interface / constructor / method / field
+- 사용하려면 Class<T> type을 가져와야 함
+1. class.forName
+- object 함수, 변수의 계층적 구조를 명시적으로 모두 표현하는 것
+( Class<?> carClass = Class.forName("reflection.Car");)
+
+2. class type 의 class
+(Class<?> carClass = Car.class;)
+
+3. 인스턴스 변수.getClass()
+- getClass() 메서드는 최상위 클래스인 Object클래스의 메서드
+( Class<?> carClass = car.getClass();)
+
+- getConstructors : 모든 public 생성자를 불러옴
+- Constructor : 하나의 public 생성자를 불러옴
+- getDeclaredConstructors : 모든 private,public 생성자를 불러옴
+- constructor = carClass.getDeclaredConstructor : 원하는 private 생성자를 불러옴
